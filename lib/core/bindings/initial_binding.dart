@@ -1,14 +1,19 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../data/providers/auth_provider.dart';
 import '../../data/providers/firebase_provider.dart';
 import '../../data/providers/storage_provider.dart';
 import '../../data/repositories/auth_repository.dart';
 import '../../data/repositories/user_repository.dart';
+import '../../data/models/user_model.dart';
 import '../../app/shared/controllers/auth_controller.dart';
 import '../../app/shared/controllers/theme_controller.dart';
 import '../../app/shared/controllers/connectivity_controller.dart';
+import '../utils/result.dart';
 import '../config/env.dart';
 
 /// Initial dependency injection binding
@@ -36,7 +41,7 @@ class InitialBinding extends Bindings {
     
     // Storage provider for abstracted storage operations
     Get.lazyPut<StorageProvider>(
-      () => StorageProvider(),
+      () => StorageProvider.instance,
       fenix: true,
     );
   }
