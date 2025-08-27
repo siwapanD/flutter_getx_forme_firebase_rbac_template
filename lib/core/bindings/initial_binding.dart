@@ -45,7 +45,7 @@ class InitialBinding extends Bindings {
   void _initializeProviders() {
     // Firebase provider (with test mock fallback)
     Get.lazyPut<FirebaseProvider>(
-      () => Env.isTest ? MockFirebaseProvider() : FirebaseProvider(),
+      () => Env.isTest ? MockFirebaseProvider() : FirebaseProvider.instance,
       fenix: true,
     );
     
@@ -100,38 +100,91 @@ class InitialBinding extends Bindings {
 }
 
 /// Mock implementations for testing
-class MockFirebaseProvider extends FirebaseProvider {
+class MockFirebaseProvider implements FirebaseProvider {
   @override
-  Future<void> initialize() async {
+  Future<VoidResult> initialize() async {
     // Mock implementation for testing
+    return VoidResults.success();
   }
   
   @override
   bool get isInitialized => true;
+  
+  @override
+  FirebaseApp? get app => null;
+  
+  @override
+  FirebaseFirestore get firestore => throw UnimplementedError('Mock firestore');
+  
+  @override
+  Future<VoidResult> batchWrite(List<BatchOperation> operations) async {
+    return VoidResults.success();
+  }
+  
+  @override
+  Future<Result<T>> runTransaction<T>(Future<T> Function(Transaction) operation) async {
+    throw UnimplementedError('Mock transaction');
+  }
+  
+  @override
+  CollectionReference<Map<String, dynamic>> collection(String path) {
+    throw UnimplementedError('Mock collection');
+  }
+  
+  @override
+  DocumentReference<Map<String, dynamic>> document(String path) {
+    throw UnimplementedError('Mock document');
+  }
+  
+  @override
+  Future<bool> isConnected() async => true;
+  
+  @override
+  Future<VoidResult> setNetworkEnabled(bool enabled) async {
+    return VoidResults.success();
+  }
+  
+  @override
+  Future<VoidResult> clearCache() async {
+    return VoidResults.success();
+  }
+  
+  @override
+  Future<VoidResult> dispose() async {
+    return VoidResults.success();
+  }
 }
 
 class MockAuthProvider extends AuthProvider {
   @override
-  Future<Map<String, dynamic>?> signInWithEmail(
+  Future<Result<UserModel>> signInWithEmail(
     String email, 
     String password,
   ) async {
     // Mock implementation for testing
-    return {
-      'uid': 'mock_user_id',
-      'email': email,
-      'displayName': 'Mock User',
-      'role': 'user',
-    };
+    final mockUser = UserModel(
+      uid: 'mock_user_id',
+      email: email,
+      displayName: 'Mock User',
+      role: 'user',
+      permissions: [],
+      isActive: true,
+      isBlocked: false,
+      emailVerified: true,
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
+    );
+    return Result.success(mockUser);
   }
   
   @override
-  Future<void> signOut() async {
+  Future<VoidResult> signOut() async {
     // Mock implementation for testing
+    return VoidResults.success();
   }
   
   @override
-  Stream<Map<String, dynamic>?> get authStateChanges {
+  Stream<User?> get authStateChanges {
     // Mock implementation for testing
     return Stream.value(null);
   }

@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
+
 /// Memory-safe debouncing utility
 /// 
 /// This class provides a debouncing mechanism that helps prevent excessive

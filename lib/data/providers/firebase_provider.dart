@@ -1,5 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_firestore/firebase_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../core/config/env.dart';
 import '../../core/utils/result.dart';

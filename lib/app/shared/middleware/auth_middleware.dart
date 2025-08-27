@@ -22,7 +22,7 @@ class AuthMiddleware extends GetMiddleware {
   int? get priority => 1;
   
   @override
-  RouteSettings? redirect(String route) {
+  String? redirect(String route) {
     try {
       final authController = Get.find<AuthController>();
       
@@ -33,21 +33,21 @@ class AuthMiddleware extends GetMiddleware {
       // If we should redirect authenticated users and user is authenticated
       if (redirectIfAuthenticated && isAuthenticated) {
         if (redirectRoute != null) {
-          return RouteSettings(name: redirectRoute);
+          return redirectRoute;
         }
         
         // Redirect to default route based on user role
         if (currentUser != null) {
           final defaultRoute = AppRoutes.getDefaultRouteForRole(currentUser.role);
-          return RouteSettings(name: defaultRoute);
+          return defaultRoute;
         }
         
-        return const RouteSettings(name: AppRoutes.dashboard);
+        return AppRoutes.dashboard;
       }
       
       // If authentication is required and user is not authenticated
       if (!redirectIfAuthenticated && !isAuthenticated) {
-        return const RouteSettings(name: AppRoutes.login);
+        return AppRoutes.login;
       }
       
       // Check if user account is active (not blocked)
@@ -65,12 +65,12 @@ class AuthMiddleware extends GetMiddleware {
             duration: const Duration(seconds: 5),
           );
           
-          return const RouteSettings(name: AppRoutes.login);
+          return AppRoutes.login;
         }
         
         // Check email verification for certain routes
         if (_requiresEmailVerification(route) && !currentUser.emailVerified) {
-          return const RouteSettings(name: AppRoutes.verifyEmail);
+          return AppRoutes.verifyEmail;
         }
       }
       
@@ -80,7 +80,7 @@ class AuthMiddleware extends GetMiddleware {
       
       // If AuthController is not found, assume not authenticated
       if (!redirectIfAuthenticated) {
-        return const RouteSettings(name: AppRoutes.login);
+        return AppRoutes.login;
       }
       
       return null;
@@ -100,7 +100,7 @@ class AuthMiddleware extends GetMiddleware {
   }
   
   @override
-  GetPage? onPageCalled(GetPage page) {
+  GetPage<dynamic>? onPageCalled(GetPage<dynamic>? page) {
     // Add any page-level modifications here
     return super.onPageCalled(page);
   }

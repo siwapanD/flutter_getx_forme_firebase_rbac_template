@@ -31,20 +31,20 @@ class RoleGuard extends GetMiddleware {
   int? get priority => 2; // Execute after AuthMiddleware
   
   @override
-  RouteSettings? redirect(String route) {
+  String? redirect(String route) {
     try {
       final authController = Get.find<AuthController>();
       
       // User must be authenticated to check roles/permissions
       if (!authController.isAuthenticated || authController.currentUser == null) {
-        return const RouteSettings(name: AppRoutes.login);
+        return AppRoutes.login;
       }
       
       final user = authController.currentUser!;
       
       // Check if user account is active
       if (!user.isActive || user.isBlocked) {
-        return const RouteSettings(name: AppRoutes.unauthorized);
+        return AppRoutes.unauthorized;
       }
       
       // Check role-based access
@@ -60,7 +60,7 @@ class RoleGuard extends GetMiddleware {
       return null; // Access granted
     } catch (e) {
       debugPrint('RoleGuard error: $e');
-      return const RouteSettings(name: AppRoutes.unauthorized);
+      return AppRoutes.unauthorized;
     }
   }
   
@@ -98,18 +98,18 @@ class RoleGuard extends GetMiddleware {
   }
   
   /// Get appropriate unauthorized route
-  RouteSettings _getUnauthorizedRoute(String requestedRoute) {
+  String _getUnauthorizedRoute(String requestedRoute) {
     // Use custom unauthorized route if provided
     if (unauthorizedRoute != null) {
-      return RouteSettings(name: unauthorizedRoute);
+      return unauthorizedRoute!;
     }
     
     // Show different error pages based on context
     if (_isAdminRoute(requestedRoute)) {
-      return const RouteSettings(name: AppRoutes.unauthorized);
+      return AppRoutes.unauthorized;
     }
     
-    return const RouteSettings(name: AppRoutes.unauthorized);
+    return AppRoutes.unauthorized;
   }
   
   /// Check if route is an admin route
@@ -118,7 +118,7 @@ class RoleGuard extends GetMiddleware {
   }
   
   @override
-  GetPage? onPageCalled(GetPage page) {
+  GetPage<dynamic>? onPageCalled(GetPage<dynamic>? page) {
     return super.onPageCalled(page);
   }
   
