@@ -1,0 +1,84 @@
+name: flutter_getx_forme_firebase_rbac_template
+description: "Comprehensive Flutter template with GetX + Forme + Firebase + RBAC + Testing architecture for enterprise applications"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.5.0 <4.0.0'
+  flutter: ">=3.24.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  
+  # Core GetX
+  get: ^4.7.2
+  get_storage: ^2.1.1
+  local_auth: ^2.1.6
+  
+  # Firebase
+  firebase_core: ^3.14.0
+  firebase_auth: ^5.6.0
+  firebase_firestore: ^5.7.0
+  google_sign_in: ^6.3.0
+  sign_in_with_apple: ^7.0.1
+  
+  # UI & Features
+  google_fonts: ^6.2.1
+  syncfusion_flutter_charts: ^29.1.40
+  syncfusion_flutter_calendar: ^29.2.11+1
+  pinput: ^5.0.1
+  intl: ^0.20.0
+  flutter_svg: ^2.2.0
+  dropdown_search: ^6.0.2
+  
+  # Forms
+  forme: ^4.3.1+1
+  forme_base_fields: ^3.0.1
+  
+  # Persistence
+  shared_preferences: ^2.5.3
+  crypto: ^3.0.3
+  
+  # Networking
+  dio: ^5.4.3
+  
+  # Utilities
+  cupertino_icons: ^1.0.6
+  permission_handler: ^11.0.1
+  url_launcher: ^6.1.14
+  image_picker: ^1.0.4
+  path_provider: ^2.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mockito: ^5.4.4
+  build_runner: ^2.4.11
+  flutter_lints: ^5.0.0
+  test: ^1.24.6
+  integration_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  
+  # Assets
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/fonts/
+  
+  # Fonts
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto-Bold.ttf
+          weight: 700
+
+flutter_intl:
+  enabled: true
