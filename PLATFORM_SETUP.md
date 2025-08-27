@@ -78,6 +78,14 @@ The platform configuration files have been created to support:
 5. **Local Properties Setup**
    - Copy `android/local.properties.template` to `android/local.properties`
    - Update Flutter SDK path
+
+6. **Android 14 (API 34) Compatibility**
+   - Project targets Android 14 (API 34) for Google Play Store compliance through 2027
+   - compileSdkVersion: 34
+   - targetSdkVersion: 34
+   - minSdkVersion: 21 (Android 5.0 for backward compatibility)
+   - Uses Android Gradle Plugin 8.1.4 and Kotlin 1.9.20 for optimal Android 14 support
+   - Includes Android 13+ permissions (POST_NOTIFICATIONS, granular media access)
    - Configure signing properties for release builds
 
 ### Files to Configure
