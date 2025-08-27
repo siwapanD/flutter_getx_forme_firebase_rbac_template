@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'login_controller.dart';
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/theme/app_theme.dart';
-import '../../shared/controllers/theme_controller.dart';
+import '../../../shared/controllers/theme_controller.dart';
 
 /// Login page with responsive design
 class LoginPage extends GetView<LoginController> {

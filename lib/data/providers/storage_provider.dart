@@ -94,7 +94,7 @@ class StorageProvider {
     T? defaultValue,
   }) async {
     if (!_isInitialized) {
-      return const Result.failure('Storage not initialized');
+      return Result.failure('Storage not initialized');
     }
     
     try {
@@ -161,7 +161,7 @@ class StorageProvider {
   /// Check if a key exists
   Future<Result<bool>> hasKey(String key) async {
     if (!_isInitialized) {
-      return const Result.failure('Storage not initialized');
+      return Result.failure('Storage not initialized');
     }
     
     try {
@@ -182,7 +182,7 @@ class StorageProvider {
   /// Get all keys
   Future<Result<List<String>>> getAllKeys() async {
     if (!_isInitialized) {
-      return const Result.failure('Storage not initialized');
+      return Result.failure('Storage not initialized');
     }
     
     try {
@@ -405,7 +405,7 @@ class StorageProvider {
   /// Get storage size (approximate)
   Future<Result<int>> getStorageSize() async {
     if (!_isInitialized) {
-      return const Result.failure('Storage not initialized');
+      return Result.failure('Storage not initialized');
     }
     
     try {
@@ -431,7 +431,7 @@ class StorageProvider {
   /// Export data for backup
   Future<Result<Map<String, dynamic>>> exportData() async {
     if (!_isInitialized) {
-      return const Result.failure('Storage not initialized');
+      return Result.failure('Storage not initialized');
     }
     
     try {

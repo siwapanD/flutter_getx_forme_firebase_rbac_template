@@ -240,7 +240,7 @@ abstract class Results {
       }
     }
     
-    return lastFailure ?? const Result.failure('No results provided');
+    return lastFailure ?? Result.failure('No results provided');
   }
   
   /// Partitions a list of Results into successes and failures
