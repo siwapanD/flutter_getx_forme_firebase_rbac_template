@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- 
+	TODO: Replace these template values with your actual Firebase iOS configuration
+	Get this file from Firebase Console > Project Settings > General > Your apps > iOS app
+	Download GoogleService-Info.plist and replace this template
+	-->
+	
+	<!-- Firebase Project Configuration -->
+	<key>API_KEY</key>
+	<string><!-- TODO: Replace with your Firebase API Key --></string>
+	<key>GCM_SENDER_ID</key>
+	<string><!-- TODO: Replace with your Firebase Sender ID --></string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string><!-- TODO: Replace with your Bundle ID (e.g., com.yourcompany.yourapp) --></string>
+	<key>PROJECT_ID</key>
+	<string><!-- TODO: Replace with your Firebase Project ID --></string>
+	<key>STORAGE_BUCKET</key>
+	<string><!-- TODO: Replace with your Firebase Storage Bucket --></string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<true/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string><!-- TODO: Replace with your Firebase iOS App ID --></string>
+	<key>DATABASE_URL</key>
+	<string><!-- TODO: Replace with your Firebase Database URL --></string>
+	
+	<!-- Google Sign-In Configuration -->
+	<key>CLIENT_ID</key>
+	<string><!-- TODO: Replace with your Google Sign-In Client ID --></string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string><!-- TODO: Replace with your Reversed Client ID (for URL schemes) --></string>
+	
+	<!-- Firebase Auth Domain -->
+	<key>AUTH_DOMAIN</key>
+	<string><!-- TODO: Replace with your Firebase Auth Domain --></string>
+	
+	<!-- Environment-specific configurations -->
+	<!-- 
+	For multi-environment setup, you should have separate Firebase projects:
+	- Development: your-app-dev
+	- Staging: your-app-staging  
+	- Production: your-app-prod
+	
+	Use different GoogleService-Info.plist files for each environment during build process.
+	-->
+</dict>
+</plist>

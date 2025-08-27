@@ -80,9 +80,29 @@ app.*.map.json
 !**/ios/**/default.pbxuser
 !**/ios/**/default.perspectivev3
 
-# Firebase
-**/android/app/google-services.json
-**/ios/Runner/GoogleService-Info.plist
+# Firebase - Keep template files, ignore actual configuration files
+**/android/app/google-services-dev.json
+**/android/app/google-services-staging.json
+**/android/app/google-services-prod.json
+**/ios/Runner/GoogleService-Info-dev.plist
+**/ios/Runner/GoogleService-Info-staging.plist
+**/ios/Runner/GoogleService-Info-prod.plist
+
+# Android specific
+**/android/local.properties
+**/android/key.properties
+**/android/app/upload-keystore.jks
+**/android/app/debug.keystore
+**/android/.gradle/
+**/android/captures/
+**/android/gradlew
+**/android/gradlew.bat
+
+# iOS specific
+**/ios/Podfile.lock
+**/ios/Runner.xcworkspace/xcshareddata/
+**/ios/Runner.xcworkspace/xcuserdata/
+**/ios/build/
 
 # Environment variables
 .env

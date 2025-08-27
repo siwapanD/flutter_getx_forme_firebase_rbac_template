@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- App Bundle Information -->
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>flutter_getx_forme_firebase_rbac_template</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(FLUTTER_BUILD_NAME)</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+
+	<!-- Firebase Configuration -->
+	<key>GOOGLE_APP_ID</key>
+	<string><!-- TODO: Replace with your Firebase iOS App ID --></string>
+	<key>GOOGLE_SERVICES_PLIST_URL</key>
+	<string>GoogleService-Info.plist</string>
+
+	<!-- Google Sign-In Configuration -->
+	<!-- TODO: Replace REVERSED_CLIENT_ID with your actual reversed client ID from GoogleService-Info.plist -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string><!-- TODO: Add your REVERSED_CLIENT_ID here --></string>
+			</array>
+		</dict>
+		<!-- Deep linking URL scheme -->
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>app.deeplink</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fluttergetxforme</string>
+			</array>
+		</dict>
+	</array>
+
+	<!-- Apple Sign In Configuration -->
+	<key>com.apple.developer.applesignin</key>
+	<array>
+		<string>Default</string>
+	</array>
+
+	<!-- Camera and Photo Library Permissions -->
+	<key>NSCameraUsageDescription</key>
+	<string>This app needs access to camera to take photos for profile pictures and document uploads.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app needs access to photo library to select images for profile pictures and document uploads.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>This app needs access to save images to your photo library.</string>
+
+	<!-- Biometric Authentication Permission -->
+	<key>NSFaceIDUsageDescription</key>
+	<string>This app uses Face ID for secure authentication and biometric login.</string>
+
+	<!-- Microphone Permission (if needed for future features) -->
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app may need access to microphone for voice features.</string>
+
+	<!-- Location Permission (if needed for future features) -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app may need access to location for location-based features.</string>
+
+	<!-- Network and App Transport Security -->
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<!-- Allow arbitrary loads for development - TODO: Remove for production -->
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<!-- Firebase and Google domains are always secure -->
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>firebase.googleapis.com</key>
+			<dict>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+			<key>firestore.googleapis.com</key>
+			<dict>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+		</dict>
+	</dict>
+
+	<!-- Background Modes for Firebase -->
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
+
+	<!-- Push Notifications -->
+	<key>UIUserNotificationSettings</key>
+	<dict>
+		<key>UIUserNotificationTypesAllowed</key>
+		<integer>7</integer>
+	</dict>
+
+	<!-- iOS Version Support -->
+	<key>MinimumOSVersion</key>
+	<string>12.0</string>
+	
+	<!-- Prevent app from being backed up to iTunes/iCloud if sensitive data -->
+	<key>UIFileSharingEnabled</key>
+	<false/>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<false/>
+</dict>
+</plist>

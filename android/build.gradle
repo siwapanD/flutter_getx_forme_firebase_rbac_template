@@ -1,0 +1,63 @@
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(':app')
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
+
+// Project-level build.gradle configuration
+buildscript {
+    ext.kotlin_version = '1.9.10'
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.1.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        
+        // Google Services plugin for Firebase
+        classpath 'com.google.gms:google-services:4.4.2'
+        
+        // Firebase Crashlytics plugin (optional)
+        // classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.9'
+        
+        // Performance monitoring plugin (optional)
+        // classpath 'com.google.firebase:perf-plugin:1.4.2'
+    }
+}
+
+// Global configuration for all subprojects
+subprojects {
+    afterEvaluate { project ->
+        if (project.hasProperty('android')) {
+            android {
+                compileSdkVersion 34
+                buildToolsVersion "34.0.0"
+                
+                defaultConfig {
+                    minSdkVersion 21
+                    targetSdkVersion 34
+                }
+                
+                compileOptions {
+                    sourceCompatibility JavaVersion.VERSION_1_8
+                    targetCompatibility JavaVersion.VERSION_1_8
+                }
+            }
+        }
+    }
+}

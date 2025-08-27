@@ -1,0 +1,182 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    // Google Services plugin for Firebase
+    id "com.google.gms.google-services"
+    // Firebase Crashlytics plugin (optional)
+    // id "com.google.firebase.crashlytics"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '1.0'
+}
+
+android {
+    namespace "com.example.flutter_getx_forme_firebase_rbac_template"
+    compileSdk flutter.compileSdkVersion
+    ndkVersion flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    defaultConfig {
+        // TODO: Specify your own unique Application ID (package name)
+        applicationId "com.example.flutter_getx_forme_firebase_rbac_template"
+        
+        // You can update the following values to match your application needs.
+        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
+        minSdkVersion 21  // Firebase requires minimum API 21 (Android 5.0)
+        targetSdkVersion flutter.targetSdkVersion
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+        
+        // Enable multidex for large applications
+        multiDexEnabled true
+        
+        // Specify supported architectures
+        ndk {
+            abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86_64'
+        }
+    }
+
+    // Signing configurations for different build types
+    signingConfigs {
+        debug {
+            // Debug signing (uses debug.keystore)
+            storeFile file('debug.keystore')
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storePassword 'android'
+        }
+        release {
+            // TODO: Configure release signing
+            // Create a release keystore and update these values
+            // storeFile file('path/to/your/release.keystore')
+            // keyAlias 'your-key-alias'
+            // keyPassword 'your-key-password'
+            // storePassword 'your-store-password'
+        }
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            debuggable true
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+            
+            // Firebase configuration for debug
+            resValue "string", "google_services_json", "google-services-debug.json"
+        }
+        
+        profile {
+            applicationIdSuffix ".profile"
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+            
+            // Firebase configuration for profile
+            resValue "string", "google_services_json", "google-services-staging.json"
+        }
+        
+        release {
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // signingConfig signingConfigs.release
+            
+            // Firebase configuration for release
+            resValue "string", "google_services_json", "google-services.json"
+        }
+    }
+
+    // Product flavors for different environments
+    flavorDimensions "environment"
+    productFlavors {
+        development {
+            dimension "environment"
+            applicationIdSuffix ".dev"
+            versionNameSuffix "-dev"
+            resValue "string", "app_name", "Flutter Template (Dev)"
+        }
+        
+        staging {
+            dimension "environment"
+            applicationIdSuffix ".staging"
+            versionNameSuffix "-staging"
+            resValue "string", "app_name", "Flutter Template (Staging)"
+        }
+        
+        production {
+            dimension "environment"
+            resValue "string", "app_name", "Flutter Template"
+        }
+    }
+}
+
+flutter {
+    source '../..'
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    
+    // Firebase BOM - ensures compatible versions of Firebase libraries
+    implementation platform('com.google.firebase:firebase-bom:33.1.2')
+    
+    // Firebase services
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-firestore'
+    implementation 'com.google.firebase:firebase-storage'
+    implementation 'com.google.firebase:firebase-messaging'  // For push notifications
+    
+    // Google Sign-In
+    implementation 'com.google.android.gms:play-services-auth:21.2.0'
+    
+    // Biometric authentication
+    implementation 'androidx.biometric:biometric:1.1.0'
+    
+    // Multidex support
+    implementation 'androidx.multidex:multidex:2.0.1'
+    
+    // Additional Firebase services (uncomment as needed)
+    // implementation 'com.google.firebase:firebase-crashlytics'     // For crash reporting
+    // implementation 'com.google.firebase:firebase-perf'           // For performance monitoring
+    // implementation 'com.google.firebase:firebase-config'         // For remote configuration
+    // implementation 'com.google.firebase:firebase-dynamic-links'  // For dynamic links
+    
+    // Network security
+    implementation 'androidx.security:security-crypto:1.1.0-alpha06'
+}
+
+// Google Services plugin configuration
+apply plugin: 'com.google.gms.google-services'

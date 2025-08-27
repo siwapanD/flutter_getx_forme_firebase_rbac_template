@@ -1,0 +1,63 @@
+{
+  /*
+   * TODO: Replace this template with your actual Firebase Android configuration
+   * Get this file from Firebase Console > Project Settings > General > Your apps > Android app
+   * Download google-services.json and replace this template
+   * 
+   * Environment-specific configurations:
+   * For multi-environment setup, you should have separate Firebase projects:
+   * - Development: your-app-dev
+   * - Staging: your-app-staging  
+   * - Production: your-app-prod
+   * 
+   * Use different google-services.json files for each environment during build process.
+   */
+  "project_info": {
+    "project_number": "<!-- TODO: Replace with your Firebase Project Number -->",
+    "project_id": "<!-- TODO: Replace with your Firebase Project ID -->",
+    "storage_bucket": "<!-- TODO: Replace with your Firebase Storage Bucket -->"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "<!-- TODO: Replace with your Firebase Android App ID -->",
+        "android_client_info": {
+          "package_name": "<!-- TODO: Replace with your Android Package Name (e.g., com.yourcompany.yourapp) -->"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "<!-- TODO: Replace with your OAuth Client ID -->",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "<!-- TODO: Replace with your Android Package Name -->",
+            "certificate_hash": "<!-- TODO: Replace with your SHA1 certificate hash -->"
+          }
+        },
+        {
+          "client_id": "<!-- TODO: Replace with your Web Client ID -->",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "<!-- TODO: Replace with your Firebase API Key -->"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "<!-- TODO: Replace with your iOS Client ID -->",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "<!-- TODO: Replace with your iOS Bundle ID -->"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

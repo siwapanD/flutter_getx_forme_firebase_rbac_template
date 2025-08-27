@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- Debug configuration - allows cleartext for development -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">localhost</domain>
+        <domain includeSubdomains="true">10.0.2.2</domain> <!-- Android emulator localhost -->
+        <domain includeSubdomains="true">127.0.0.1</domain>
+        <!-- Add your development server domains here -->
+        <domain includeSubdomains="true">dev.yourapp.com</domain>
+        <domain includeSubdomains="true">staging.yourapp.com</domain>
+    </domain-config>
+    
+    <!-- Production configuration - enforce HTTPS -->
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">yourapp.com</domain>
+        <domain includeSubdomains="true">api.yourapp.com</domain>
+        
+        <!-- Certificate pinning for enhanced security (optional) -->
+        <pin-set expiration="2025-12-31">
+            <!-- TODO: Add your certificate pins -->
+            <!-- <pin digest="SHA-256">base64-encoded-public-key-hash</pin> -->
+        </pin-set>
+    </domain-config>
+    
+    <!-- Firebase and Google services domains -->
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">firebase.googleapis.com</domain>
+        <domain includeSubdomains="true">firestore.googleapis.com</domain>
+        <domain includeSubdomains="true">storage.googleapis.com</domain>
+        <domain includeSubdomains="true">accounts.google.com</domain>
+        <domain includeSubdomains="true">oauth2.googleapis.com</domain>
+    </domain-config>
+    
+    <!-- Base configuration for all other domains -->
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <!-- Trust system CAs -->
+            <certificates src="system"/>
+            <!-- Trust user-added CAs (for development) -->
+            <certificates src="user"/>
+        </trust-anchors>
+    </base-config>
+</network-security-config>

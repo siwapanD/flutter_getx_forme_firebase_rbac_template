@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App name (will be overridden by build variants) -->
+    <string name="app_name">Flutter Template</string>
+    
+    <!-- Firebase configuration -->
+    <!-- TODO: Replace with your actual Firebase Web Client ID -->
+    <string name="default_web_client_id">YOUR_FIREBASE_WEB_CLIENT_ID</string>
+    
+    <!-- Push Notifications -->
+    <string name="default_notification_channel_id">default_channel</string>
+    <string name="default_notification_channel_name">Default Notifications</string>
+    <string name="default_notification_channel_description">Default notification channel for the app</string>
+    
+    <!-- Deep linking -->
+    <string name="app_scheme">fluttergetxforme</string>
+    
+    <!-- Biometric authentication strings -->
+    <string name="biometric_auth_title">Biometric Authentication</string>
+    <string name="biometric_auth_subtitle">Use your biometric to authenticate</string>
+    <string name="biometric_auth_description">Place your finger on the sensor or look at the camera</string>
+    <string name="biometric_auth_negative_button">Cancel</string>
+    
+    <!-- Permission rationale strings -->
+    <string name="camera_permission_rationale">Camera access is needed to take photos for profile pictures and document uploads.</string>
+    <string name="storage_permission_rationale">Storage access is needed to save and access images.</string>
+    <string name="location_permission_rationale">Location access may be needed for location-based features.</string>
+    
+    <!-- Error messages -->
+    <string name="error_network">Network error. Please check your connection.</string>
+    <string name="error_generic">Something went wrong. Please try again.</string>
+    <string name="error_firebase">Firebase service error. Please try again later.</string>
+    <string name="error_biometric_not_available">Biometric authentication is not available on this device.</string>
+    <string name="error_biometric_not_enrolled">No biometric credentials are enrolled on this device.</string>
+    
+    <!-- Success messages -->
+    <string name="success_login">Successfully logged in!</string>
+    <string name="success_logout">Successfully logged out!</string>
+    <string name="success_register">Account created successfully!</string>
+    
+    <!-- General UI strings -->
+    <string name="loading">Loading...</string>
+    <string name="retry">Retry</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    
+    <!-- Development and debugging -->
+    <string name="debug_info">Debug Information</string>
+    <string name="environment_dev">Development</string>
+    <string name="environment_staging">Staging</string>
+    <string name="environment_prod">Production</string>
+</resources>
