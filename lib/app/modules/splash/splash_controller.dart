@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../../shared/controllers/auth_controller.dart';
+import '../../../shared/controllers/auth_controller.dart';
 import '../../../core/routes/app_routes.dart';
 import '../../../core/config/env.dart';
 

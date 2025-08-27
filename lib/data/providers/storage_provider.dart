@@ -94,7 +94,7 @@ class StorageProvider {
     T? defaultValue,
   }) async {
     if (!_isInitialized) {
-      return const Result.failure('Storage not initialized');
+      return Result.failure('Storage not initialized');
     }
     
     try {
@@ -161,7 +161,7 @@ class StorageProvider {
   /// Check if a key exists
   Future<Result<bool>> hasKey(String key) async {
     if (!_isInitialized) {
-      return const Result.failure('Storage not initialized');
+      return Result.failure('Storage not initialized');
     }
     
     try {
@@ -182,14 +182,14 @@ class StorageProvider {
   /// Get all keys
   Future<Result<List<String>>> getAllKeys() async {
     if (!_isInitialized) {
-      return const Result.failure('Storage not initialized');
+      return Result.failure('Storage not initialized');
     }
     
     try {
       List<String> keys = [];
       
       if (_getStorage != null) {
-        keys = _getStorage!.getKeys().cast<String>();
+        keys = _getStorage!.getKeys().whereType<String>().toList();
       } else if (_sharedPreferences != null) {
         keys = _sharedPreferences!.getKeys().toList();
       }
@@ -405,7 +405,7 @@ class StorageProvider {
   /// Get storage size (approximate)
   Future<Result<int>> getStorageSize() async {
     if (!_isInitialized) {
-      return const Result.failure('Storage not initialized');
+      return Result.failure('Storage not initialized');
     }
     
     try {
@@ -431,14 +431,14 @@ class StorageProvider {
   /// Export data for backup
   Future<Result<Map<String, dynamic>>> exportData() async {
     if (!_isInitialized) {
-      return const Result.failure('Storage not initialized');
+      return Result.failure('Storage not initialized');
     }
     
     try {
       final exportData = <String, dynamic>{};
       
       if (_getStorage != null) {
-        final keys = _getStorage!.getKeys().cast<String>();
+        final keys = _getStorage!.getKeys().whereType<String>();
         for (final key in keys) {
           // Skip sensitive data in export
           if (!_isSensitiveKey(key)) {
