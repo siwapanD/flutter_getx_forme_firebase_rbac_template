@@ -189,7 +189,7 @@ class StorageProvider {
       List<String> keys = [];
       
       if (_getStorage != null) {
-        keys = _getStorage!.getKeys().cast<String>();
+        keys = _getStorage!.getKeys().whereType<String>().toList();
       } else if (_sharedPreferences != null) {
         keys = _sharedPreferences!.getKeys().toList();
       }
@@ -438,7 +438,7 @@ class StorageProvider {
       final exportData = <String, dynamic>{};
       
       if (_getStorage != null) {
-        final keys = _getStorage!.getKeys().cast<String>();
+        final keys = _getStorage!.getKeys().whereType<String>();
         for (final key in keys) {
           // Skip sensitive data in export
           if (!_isSensitiveKey(key)) {
