@@ -1,0 +1,26 @@
+# This file contains the path to the Flutter SDK
+# TODO: Update this path to point to your Flutter SDK installation
+# Example paths:
+# Windows: sdk.dir=C:\\flutter
+# macOS/Linux: sdk.dir=/Users/username/flutter
+# Or use environment variable: flutter.sdk=${FLUTTER_HOME}
+
+# Flutter SDK path (required)
+flutter.sdk=/path/to/flutter/sdk
+
+# Android SDK path (optional - usually auto-detected)
+# sdk.dir=/path/to/android/sdk
+
+# Signing configuration for release builds (optional)
+# Create these values for production releases
+# MYAPP_UPLOAD_STORE_FILE=upload-keystore.jks
+# MYAPP_UPLOAD_KEY_ALIAS=upload
+# MYAPP_UPLOAD_STORE_PASSWORD=your_store_password
+# MYAPP_UPLOAD_KEY_PASSWORD=your_key_password
+
+# Environment-specific configurations
+# These can be overridden during build process
+ENVIRONMENT=development
+ENABLE_FIREBASE=true
+ENABLE_ANALYTICS=false
+ENABLE_CRASHLYTICS=true

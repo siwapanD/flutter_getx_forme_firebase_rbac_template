@@ -1,0 +1,105 @@
+# Uncomment this line to define a global platform for your project
+platform :ios, '12.0'
+
+# CocoaPods analytics sends network stats synchronously affecting flutter build latency.
+ENV['COCOAPODS_DISABLE_STATS'] = 'true'
+
+project 'Runner', {
+  'Debug' => :debug,
+  'Profile' => :release,
+  'Release' => :release,
+}
+
+def flutter_root
+  generated_xcode_build_settings_path = File.expand_path(File.join('..', 'Flutter', 'Generated.xcconfig'), __FILE__)
+  unless File.exist?(generated_xcode_build_settings_path)
+    raise "#{generated_xcode_build_settings_path} must exist. If you're running pod install manually, make sure flutter pub get is executed first"
+  end
+
+  File.foreach(generated_xcode_build_settings_path) do |line|
+    matches = line.match(/FLUTTER_ROOT\=(.*)/)
+    return matches[1].strip if matches
+  end
+  raise "FLUTTER_ROOT not found in #{generated_xcode_build_settings_path}. Try deleting Generated.xcconfig, then run flutter pub get"
+end
+
+require File.expand_path(File.join('packages', 'flutter_tools', 'bin', 'podhelper'), flutter_root)
+
+flutter_ios_podfile_setup
+
+target 'Runner' do
+  use_frameworks!
+  use_modular_headers!
+
+  flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+  
+  # Firebase Core (automatically included by other Firebase pods)
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Messaging'  # For push notifications
+  
+  # Google Sign-In
+  pod 'GoogleSignIn'
+  
+  # Apple Sign-In (available from iOS 13.0+, but gracefully handled for older versions)
+  pod 'AuthenticationServices' if defined?(AuthenticationServices)
+  
+  # Local Authentication (for biometric authentication)
+  pod 'LocalAuthentication'
+  
+  # Image and Camera functionality
+  pod 'DKImagePickerController'
+  
+  # Network and Security
+  pod 'Alamofire', '~> 5.6'
+  
+  # Additional Firebase services (uncomment as needed)
+  # pod 'Firebase/Crashlytics'    # For crash reporting
+  # pod 'Firebase/Performance'    # For performance monitoring
+  # pod 'Firebase/RemoteConfig'   # For remote configuration
+  # pod 'Firebase/DynamicLinks'   # For dynamic links
+  
+  target 'RunnerTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    flutter_additional_ios_build_settings(target)
+    
+    # Ensure minimum deployment target
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+      
+      # Enable bitcode
+      config.build_settings['ENABLE_BITCODE'] = 'YES'
+      
+      # Exclude arm64 for simulator builds (for older machines)
+      config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+      
+      # Signing configuration
+      config.build_settings['CODE_SIGNING_REQUIRED'] = 'NO'
+      config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+      
+      # Privacy manifest requirement for iOS 17+
+      config.build_settings['GENERATE_INFOPLIST_FILE'] = 'YES'
+    end
+  end
+  
+  # Firebase workaround for Xcode 15
+  installer.pods_project.targets.each do |target|
+    if target.name == 'BoringSSL-GRPC'
+      target.source_build_phase.files.each do |file|
+        if file.settings && file.settings['COMPILER_FLAGS']
+          flags = file.settings['COMPILER_FLAGS'].split
+          flags.reject! { |flag| flag == '-GCC_WARN_INHIBIT_ALL_WARNINGS' }
+          file.settings['COMPILER_FLAGS'] = flags.join(' ')
+        end
+      end
+    end
+  end
+end

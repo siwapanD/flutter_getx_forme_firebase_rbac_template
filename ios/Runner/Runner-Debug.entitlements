@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Apple Sign In Capability -->
+	<key>com.apple.developer.applesignin</key>
+	<array>
+		<string>Default</string>
+	</array>
+	
+	<!-- Keychain Access Groups for Secure Storage -->
+	<key>keychain-access-groups</key>
+	<array>
+		<string>$(AppIdentifierPrefix)$(CFBundleIdentifier)</string>
+		<string>$(AppIdentifierPrefix)flutter_secure_storage</string>
+	</array>
+	
+	<!-- Associated Domains for Deep Linking and Universal Links -->
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<!-- TODO: Replace with your actual domains -->
+		<string>applinks:your-app.com</string>
+		<string>applinks:dev.your-app.com</string>
+		<string>applinks:staging.your-app.com</string>
+	</array>
+	
+	<!-- Push Notifications -->
+	<key>aps-environment</key>
+	<string>development</string>
+	
+	<!-- Background App Refresh -->
+	<key>com.apple.developer.background-tasks</key>
+	<array>
+		<string>com.apple.developer.background-generic</string>
+		<string>com.apple.developer.background-fetch</string>
+	</array>
+</dict>
+</plist>
